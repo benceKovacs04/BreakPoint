@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React, {Fragment} from "react";
 
 const styles = {
     card: {
-        width: "100px",
+        width: "200px",
         height: "100px",
         border: "solid black 1px"
     }
