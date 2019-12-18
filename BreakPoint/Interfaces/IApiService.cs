@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BreakPoint.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace BreakPoint.Interfaces
 {
     public interface IApiService<T>
     {
-        Task<List<T>> GetRSSBy(string query);
+        Task<List<News>> GetNews(int numberOfFeeds, int numberOfNews);
 
     }
 }

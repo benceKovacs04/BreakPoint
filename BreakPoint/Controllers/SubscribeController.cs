@@ -22,10 +22,11 @@ namespace BreakPoint.Controllers
         }
 
         [HttpPost]
-        public async Task<List<RSS>> SubscribeRSS()
+        public async Task<List<News>> SubscribeRSS()
         {
-            var test = await _apiService.GetRSSBy("gaming");
-            return test;
+            List<News> news = await _apiService.GetNews(1,2);
+            int ass = 54;
+            return news;
         }
     }
 }
