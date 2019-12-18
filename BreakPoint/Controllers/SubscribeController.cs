@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BreakPoint.Interfaces;
+using BreakPoint.Model;
+using BreakPoint.Services;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +14,18 @@ namespace BreakPoint.Controllers
     [Route("/subscribe")]
     public class SubscribeController : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> SubscribeRSS()
-        {
+        private IApiService<RSS> _apiService;
 
-            return Ok();
+        public SubscribeController(IApiService<RSS> apiService)
+        {
+            _apiService = apiService;
+        }
+
+        [HttpPost]
+        public async Task<List<RSS>> SubscribeRSS()
+        {
+            var test = await _apiService.GetRSSBy("gaming");
+            return test;
         }
     }
 }

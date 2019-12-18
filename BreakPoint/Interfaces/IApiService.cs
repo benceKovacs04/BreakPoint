@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 
 namespace BreakPoint.Interfaces
 {
-    interface IApiService
+    public interface IApiService<T>
     {
+        Task<List<T>> GetRSSBy(string query);
+
     }
 }

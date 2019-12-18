@@ -1,3 +1,6 @@
+using BreakPoint.Interfaces;
+using BreakPoint.Model;
+using BreakPoint.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,7 +23,7 @@ namespace BreakPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddScoped<IApiService<RSS>, ApiService>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -57,7 +60,7 @@ namespace BreakPoint
                     pattern: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpa(spa =>
+            /*app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
 
@@ -65,7 +68,7 @@ namespace BreakPoint
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
-            });
+            });*/
         }
     }
 }
