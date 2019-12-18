@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Feed } from "./containers/Feed";
 
 export class Home extends Component {
-  static displayName = Home.name;
+    static displayName = Home.name;
 
-  render () {
-    return (
-      <div>
-        <h1>Hello, World!</h1>
-      </div>
-    );
-  }
+    render() {
+        return <Feed></Feed>;
+    }
 }
