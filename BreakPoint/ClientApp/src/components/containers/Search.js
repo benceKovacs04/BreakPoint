@@ -3,7 +3,7 @@ import axios from "axios";
 import {SearchBar} from "../SearchBar";
 
 export const Search = () => {
-    const[userInput, setUserInput] = useState(null);
+    const [userInput, setUserInput] = useState(null);
 
     const handleSearch = (event) => {
         setUserInput(event.target.value);
@@ -14,8 +14,7 @@ export const Search = () => {
         axios.post("https://localhost:5001/subscribe", {userInput}).then(response => console.log(response))
     };
 
-    return(
+    return (
         <SearchBar change={handleSearch}/>
     )
-
 };

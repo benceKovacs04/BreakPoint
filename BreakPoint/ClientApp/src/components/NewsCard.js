@@ -1,17 +1,43 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 
 const styles = {
     card: {
-        width: "200px",
-        height: "100px",
-        border: "solid black 1px"
+        width: "300px",
+        margin: "10px",
+        padding: "20px",
+        backgroundColor: "white"
+    },
+    cardContainer: {
+        textDecoration: "none",
+        color: "black",
+    },
+    title: {
+        marginBottom: "10px",
+        fontWeight: "bold"
+    },
+    selected: {
+        width: "300px",
+        margin: "10px",
+        padding: "20px",
+        backgroundColor: "lightgrey"
     }
 };
 
 export const NewsCard = props => {
+    const [selected, setSelected] = useState(false);
+
+    const toggleSelect = () => {
+        setSelected(!selected);
+    };
+
     return (
-        <div style={styles.card}>
-            <p>{props.news.title}</p>
-        </div>
+        <a href={props.news.originalURL} style={styles.cardContainer} target="_blank">
+            <div onMouseEnter={toggleSelect} onMouseLeave={toggleSelect}
+                 style={selected ? styles.selected : styles.card}>
+                <p>CATEGORY</p>
+                <p style={styles.title}>{props.news.title}</p>
+                <img src={props.news.imageURL.url} width="260px"/>
+            </div>
+        </a>
     );
 };
