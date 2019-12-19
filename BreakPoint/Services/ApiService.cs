@@ -17,24 +17,24 @@ namespace BreakPoint.Services
         private readonly string BASE_API_PATH = "https://cloud.feedly.com/v3/search/feeds/?query=";
         private readonly string RSS_API_PATH = "https://cloud.feedly.com/v3/streams/contents?count=5&ranked=newest&streamId=";
 
-        public async Task<List<News>> GetNews(int numberOfFeeds, int numberOfNews)
+        public async Task<List<News>> GetNews(string keyword)
         {
-            RSSApiResult rssResult = await GetRSSBy("gaming");
-            List<News> news = await GetNewsFromRSSApiResult(rssResult);
+            RSSApiResult rssResult = await GetRSSBy(keyword);
+            List<News> news = await GetNewsFromRSSApiResult(rssResult, keyword);
             return news;
         }
 
-        private async Task<RSSApiResult> GetRSSBy(string query)
+        private async Task<RSSApiResult> GetRSSBy(string keyword)
         {
-            string data = await GetData(query);
+            string data = await GetData(keyword);
             RSSApiResult rssList = BuildResult(data);
             return rssList;
         }
 
-        private async Task<string> GetData(string query)
+        private async Task<string> GetData(string keyword)
         {
             HttpClient client = new HttpClient();
-            return await client.GetStringAsync(BASE_API_PATH + query);
+            return await client.GetStringAsync(BASE_API_PATH + keyword);
         }
 
         private RSSApiResult BuildResult(string jsonData)
@@ -44,7 +44,7 @@ namespace BreakPoint.Services
             return response;
         }
 
-        private async Task<List<News>> GetNewsFromRSSApiResult(RSSApiResult result)
+        private async Task<List<News>> GetNewsFromRSSApiResult(RSSApiResult result, string keyword)
         {
             List<News> newsList = new List<News>();
             HttpClient client = new HttpClient();
@@ -54,6 +54,7 @@ namespace BreakPoint.Services
                 NewsApiResult newsResult = JsonConvert.DeserializeObject<NewsApiResult>(response);
                 foreach (var news in newsResult.Items)
                 {
+                    news.Keyword = keyword;
                     newsList.Add(news);
                 }
             }
