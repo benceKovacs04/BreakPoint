@@ -34,8 +34,8 @@ namespace BreakPoint.Controllers
                 requestBody = JsonConvert.DeserializeObject<Dictionary<string, string>>(body);
             }
 
-            List<News> news = await _apiService.GetNews(requestBody["userinput"]);
-            
+            List<News> news = await _apiService.GetNews(requestBody["userInput"]);
+
             return news;
         }
     }

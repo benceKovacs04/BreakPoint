@@ -1,20 +1,24 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import axios from "axios";
-import {SearchBar} from "../SearchBar";
 
-export const Search = () => {
+export const Search = (props) => {
     const [userInput, setUserInput] = useState(null);
 
-    const handleSearch = (event) => {
-        setUserInput(event.target.value);
-        fetchData();
-    };
 
     const fetchData = () => {
-        axios.post("https://localhost:5001/subscribe", {userInput}).then(response => console.log(response))
+        axios.post("https://localhost:5001/subscribe", {userInput}).then(response => props.newsHandler(response.data));
     };
 
     return (
-        <SearchBar change={handleSearch}/>
+        <Fragment>
+            <input
+                onChange={(event) => setUserInput(event.target.value)}
+                onKeyPress={(event) => {
+                    if (event.key === 'Enter') {
+                        fetchData()
+                    }
+                }}
+                placeholder="Search for categories"/>
+        </Fragment>
     )
 };

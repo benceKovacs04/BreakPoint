@@ -1,5 +1,4 @@
-import React, {useState, useEffect, Fragment} from "react";
-import axios from "axios";
+import React, {Fragment} from "react";
 import {NewsCard} from "../NewsCard";
 
 const styles = {
@@ -13,20 +12,13 @@ const styles = {
     }
 };
 
-export const Feed = () => {
-    const [newsList, setNewsList] = useState([]);
+export const Feed = (props) => {
 
-    useEffect(() => {
-        axios
-            .post("https://localhost:5001/subscribe")
-            .then(response => setNewsList(response.data));
-    }, []);
 
     return (
         <Fragment>
             <div style={styles.feedContainer}>
-                {newsList.map(
-                    (news) => <NewsCard news={news} key={news.id}/>)}
+                {props.newsList.map(news => <NewsCard news={news} key={news.id}/>)}
             </div>
         </Fragment>
     );

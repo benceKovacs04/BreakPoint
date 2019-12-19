@@ -31,12 +31,13 @@ export const NewsCard = props => {
     };
 
     return (
-        <a href={props.news.originalURL} style={styles.cardContainer} target="_blank">
+
+        <a href={props.news.originalURL ? props.news.originalURL : ""} style={styles.cardContainer} target="_blank">
             <div onMouseEnter={toggleSelect} onMouseLeave={toggleSelect}
                  style={selected ? styles.selected : styles.card}>
-                <p>CATEGORY</p>
+                <p>{props.news.keyword}</p>
                 <p style={styles.title}>{props.news.title}</p>
-                <img src={props.news.imageURL.url} width="260px"/>
+                <img src={props.news.imageURL ? props.news.imageURL.url : ""} width="260px"/>
             </div>
         </a>
     );
