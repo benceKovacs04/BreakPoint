@@ -17,9 +17,9 @@ namespace BreakPoint.Services
         private readonly string BASE_API_PATH = "https://cloud.feedly.com/v3/search/feeds/?query=";
         private readonly string RSS_API_PATH = "https://cloud.feedly.com/v3/streams/contents?count=5&ranked=newest&streamId=";
 
-        public async Task<List<News>> GetNews(int numberOfFeeds, int numberOfNews)
+        public async Task<List<News>> GetNews(string keyword)
         {
-            RSSApiResult rssResult = await GetRSSBy("gaming");
+            RSSApiResult rssResult = await GetRSSBy(keyword);
             List<News> news = await GetNewsFromRSSApiResult(rssResult);
             return news;
         }

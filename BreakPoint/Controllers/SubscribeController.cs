@@ -2,10 +2,13 @@
 using BreakPoint.Model;
 using BreakPoint.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BreakPoint.Controllers
@@ -24,8 +27,15 @@ namespace BreakPoint.Controllers
         [HttpPost]
         public async Task<List<News>> SubscribeRSS()
         {
-            List<News> news = await _apiService.GetNews(1,2);
-            int ass = 54;
+            Dictionary<string, string> requestBody;
+            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
+            {
+                var body = await reader.ReadToEndAsync();
+                requestBody = JsonConvert.DeserializeObject<Dictionary<string, string>>(body);
+            }
+
+            List<News> news = await _apiService.GetNews(requestBody["userinput"]);
+            
             return news;
         }
     }

@@ -8,7 +8,7 @@ namespace BreakPoint.Interfaces
 {
     public interface IApiService<T>
     {
-        Task<List<News>> GetNews(int numberOfFeeds, int numberOfNews);
+        Task<List<News>> GetNews(string keyword);
 
     }
 }
