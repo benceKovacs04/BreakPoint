@@ -1,10 +1,11 @@
-import React, { Component } from "react";
-import { Feed } from "./containers/Feed";
+import React, {Component, Fragment} from "react";
+import {Feed} from "./containers/Feed";
 
-export class Home extends Component {
-    static displayName = Home.name;
+export const Home = () => {
 
-    render() {
-        return <Feed></Feed>;
-    }
-}
+    return (
+        <Fragment>
+            <Feed/>
+        </Fragment>
+    )
+};
