@@ -9,10 +9,12 @@ namespace BreakPoint.Model.DbModel
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<User>().ToTable("Post");
         }
     }
 }
