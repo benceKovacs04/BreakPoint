@@ -54,22 +54,23 @@ namespace BreakPoint
                 app.UseHsts();
             }
 
-            app.UseCors();
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
             app.UseRouting();
 
+            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
+                /*endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}");*/
+                endpoints.MapControllers();
             });
 
-            app.UseSpa(spa =>
+            /*app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
 
@@ -77,7 +78,7 @@ namespace BreakPoint
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
-            });
+            });*/
         }
     }
 }
