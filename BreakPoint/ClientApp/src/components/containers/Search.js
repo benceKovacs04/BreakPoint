@@ -6,7 +6,7 @@ export const Search = (props) => {
 
 
     const fetchData = () => {
-        axios.post("https://localhost:44381/subscribe", {userInput}).then(response => props.newsHandler(response.data));
+        axios.post("https://localhost:5001/subscribe", {userInput}).then(response => props.newsHandler(response.data));
     };
 
     return (
