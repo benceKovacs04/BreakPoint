@@ -1,10 +1,12 @@
 using BreakPoint.Interfaces;
 using BreakPoint.Model;
+using BreakPoint.Model.DbModel;
 using BreakPoint.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -36,6 +38,9 @@ namespace BreakPoint
             {
                 configuration.RootPath = "ClientApp/build";
             });
+            
+            services.AddDbContext<BreakPointContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
