@@ -17,9 +17,9 @@ namespace BreakPoint.Model.DbModel
         
         [Column(TypeName = "Date")]
         public DateTime RegistrationDate { get; set; }
-
+        [InverseProperty("User")]
         public List<User> Friends { get; set; }
-
+        
         public List<Post> Posts { get; set; }
         
     }

@@ -14,7 +14,7 @@ namespace BreakPoint.Model.DbModel
         [Column(TypeName = "Date")]
         public DateTime CreationTime { get; set; }
         
-        public int UserId { get; set; }
+        public int UserID { get; set; }
         
         public User User { get; set; }
 

@@ -53,7 +53,7 @@ namespace BreakPoint.Model.DbModel
                 {
                     Content = "text content",
                     CreationTime = new DateTime(2020, 1, 1),
-                    UserId = 1,
+                    UserID = 1,
                     User = users[0]
                 },
 
@@ -61,7 +61,7 @@ namespace BreakPoint.Model.DbModel
                 {
                     Content = "text content2",
                     CreationTime = new DateTime(2020, 1, 2),
-                    UserId = 1,
+                    UserID = 1,
                     User = users[0]
                 },
             };
