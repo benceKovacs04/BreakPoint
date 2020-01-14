@@ -7,7 +7,7 @@ namespace BreakPoint.Model.DbModel
 {
     public class User
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public string Username { get; set; }
 
@@ -19,6 +19,8 @@ namespace BreakPoint.Model.DbModel
         public DateTime RegistrationDate { get; set; }
 
         public List<User> Friends { get; set; }
+
+        public List<Post> Posts { get; set; }
         
     }
 }

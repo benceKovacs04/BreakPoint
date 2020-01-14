@@ -5,7 +5,7 @@ namespace BreakPoint.Model.DbModel
 {
     public class Post
     {
-        public int Id { get; set; }
+        public int ID { get; set; }
 
         public string? ImagePath { get; set; }
 
@@ -14,9 +14,9 @@ namespace BreakPoint.Model.DbModel
         [Column(TypeName = "Date")]
         public DateTime CreationTime { get; set; }
         
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         
-        public string User { get; set; }
+        public User User { get; set; }
 
     }
 }

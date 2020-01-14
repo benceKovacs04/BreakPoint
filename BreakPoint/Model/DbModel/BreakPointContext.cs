@@ -14,7 +14,7 @@ namespace BreakPoint.Model.DbModel
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<User>().ToTable("Post");
+            modelBuilder.Entity<Post>().ToTable("Post");
         }
     }
 }
