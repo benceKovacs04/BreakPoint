@@ -29,6 +29,7 @@ namespace BreakPoint
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IApiService<RSS>, ApiService>();
+            services.AddSingleton<IHasherService, HasherService>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -63,7 +64,8 @@ namespace BreakPoint
 
             app.UseRouting();
 
-            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true)
+                .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseEndpoints(endpoints =>
             {

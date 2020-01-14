@@ -1,10 +1,13 @@
-﻿namespace BreakPoint.Interfaces
+﻿using BreakPoint.Model.DbModel;
+using Microsoft.AspNetCore.Identity;
+
+namespace BreakPoint.Interfaces
 {
     public interface IHasherService
     {
-        void HashPassword();
+        string HashPassword(User user, string password);
 
-        bool ValidateUser(string password);
+        PasswordVerificationResult ValidateUser(User user, string pwInput);
 
     }
 }
