@@ -14,7 +14,7 @@ namespace BreakPoint.Model.DbModel
             _context = context;
         }
 
-        public void Initialise()
+        public void Initialize()
         {
             var users = new User[]
             {

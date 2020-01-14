@@ -38,7 +38,7 @@ namespace BreakPoint
                     context.Database.EnsureDeleted();
                     context.Database.EnsureCreated();
                     var seed = new DbSeed(context);
-                    seed.Initialise();
+                    seed.Initialize();
                 }
                 catch (Exception ex)
                 {
