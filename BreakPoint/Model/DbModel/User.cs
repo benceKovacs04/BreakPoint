@@ -9,7 +9,7 @@ namespace BreakPoint.Model.DbModel
     {
         public int ID { get; set; }
 
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         public string Email { get; set; }
         
@@ -17,9 +17,9 @@ namespace BreakPoint.Model.DbModel
         
         [Column(TypeName = "Date")]
         public DateTime RegistrationDate { get; set; }
-        [InverseProperty("User")]
+        /*[InverseProperty("User")]
         public List<User> Friends { get; set; }
-        
+        */
         public List<Post> Posts { get; set; }
         
     }

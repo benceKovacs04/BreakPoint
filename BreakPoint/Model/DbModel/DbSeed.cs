@@ -20,29 +20,29 @@ namespace BreakPoint.Model.DbModel
             {
                 new User
                 {
-                    Username = "TestUser1",
+                    UserName = "TestUser1",
                     Email = "testemail@gmail.com",
                     Password = "hashedPassword1",
                     RegistrationDate = new DateTime(2020, 1, 1),
-                    Friends = new List<User>(),
+                   // Friends = new List<User>(),
                     Posts = new List<Post>()
                 },
                 new User
                 {
-                    Username = "TestUser2",
+                    UserName = "TestUser2",
                     Email = "testemail2@gmail.com",
                     Password = "hashedPassword2",
                     RegistrationDate = new DateTime(2020, 1, 2),
-                    Friends = new List<User>(),
+                  //  Friends = new List<User>(),
                     Posts = new List<Post>()
                 },
                 new User
                 {
-                    Username = "TestUser3",
+                    UserName = "TestUser3",
                     Email = "testemail3@gmail.com",
                     Password = "hashedPassword3",
                     RegistrationDate = new DateTime(2020, 1, 3),
-                    Friends = new List<User>(),
+                   // Friends = new List<User>(),
                     Posts = new List<Post>()
                 }
             };
