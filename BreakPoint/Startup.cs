@@ -5,6 +5,7 @@ using BreakPoint.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,9 +20,6 @@ namespace BreakPoint
         {
             Configuration = configuration;
         }
-
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
 
         public IConfiguration Configuration { get; }
 
@@ -40,6 +38,11 @@ namespace BreakPoint
             
             services.AddDbContext<BreakPointContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
+
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<BreakPointContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +60,8 @@ namespace BreakPoint
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
+            DbSeed.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -66,6 +71,8 @@ namespace BreakPoint
 
             app.UseCors(options => options.SetIsOriginAllowed(x => _ = true)
                 .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

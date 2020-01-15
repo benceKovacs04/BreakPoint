@@ -1,20 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BreakPoint.Model.DbModel
 {
-    public class BreakPointContext : DbContext
+    public class BreakPointContext : IdentityDbContext<User>
     {
         public BreakPointContext (DbContextOptions<BreakPointContext> options) : base(options)
         {
+
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        // public DbSet<User> AppUsers { get; set; }
+        // public DbSet<Post> Posts { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder builder)
         {
-            modelBuilder.Entity<User>().ToTable("User");
-            modelBuilder.Entity<Post>().ToTable("Post");
+            // builder.Entity<User>().ToTable("User");
+            // builder.Entity<Post>().ToTable("Post"); 
+
+            base.OnModelCreating(builder);
         }
     }
 }

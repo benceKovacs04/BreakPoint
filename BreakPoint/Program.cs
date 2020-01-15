@@ -37,8 +37,6 @@ namespace BreakPoint
                     var context = services.GetRequiredService<BreakPointContext>();
                     context.Database.EnsureDeleted();
                     context.Database.EnsureCreated();
-                    var seed = new DbSeed(context);
-                    seed.Initialize();
                 }
                 catch (Exception ex)
                 {
@@ -49,4 +47,4 @@ namespace BreakPoint
         }
 
     }
-}
+}   
