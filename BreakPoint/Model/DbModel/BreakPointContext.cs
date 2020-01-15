@@ -10,13 +10,13 @@ namespace BreakPoint.Model.DbModel
 
         }
 
-        public DbSet<User> AppUsers { get; set; }
-        public DbSet<Post> Posts { get; set; }
+        // public DbSet<User> AppUsers { get; set; }
+        // public DbSet<Post> Posts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            /* builder.Entity<User>().ToTable("User");
-             builder.Entity<Post>().ToTable("Post"); */
+            // builder.Entity<User>().ToTable("User");
+            // builder.Entity<Post>().ToTable("Post"); 
 
             base.OnModelCreating(builder);
         }

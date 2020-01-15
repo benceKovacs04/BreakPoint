@@ -43,7 +43,7 @@ namespace BreakPoint
             services.AddDbContext<BreakPointContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
 
-            services.AddIdentity<User, IdentityRole>(options => options.Password.RequireNonAlphanumeric = false)
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<BreakPointContext>()
                 .AddDefaultTokenProviders();
 
@@ -64,6 +64,8 @@ namespace BreakPoint
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
+            DbSeed.Initialize(app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope().ServiceProvider);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
