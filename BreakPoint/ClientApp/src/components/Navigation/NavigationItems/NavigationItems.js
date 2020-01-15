@@ -1,12 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import classes from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
+import loginContext from "../../Context/LoginContext";
 
-const navigationItems = () => (
-    <ul className={classes.NavigationItems}>
-        <NavigationItem active>Log In</NavigationItem>
-        <NavigationItem>Register</NavigationItem>
-    </ul>
-);
+export default function NavigationItems() {
+    let { stateInHome, changeStateInHome } = useContext(loginContext);
 
-export default navigationItems;
+    return (
+        <ul className={classes.NavigationItems}>
+            {stateInHome}
+            <NavigationItem click={changeStateInHome}>Log In</NavigationItem>
+            <NavigationItem>Register</NavigationItem>
+        </ul>
+    );
+}
