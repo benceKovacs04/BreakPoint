@@ -23,7 +23,7 @@ namespace BreakPoint.Services
 
         public PasswordVerificationResult ValidateUser(User user, string pwInput)
         {
-            return _pwHasher.VerifyHashedPassword(user, user.Password, pwInput);
+            return _pwHasher.VerifyHashedPassword(user, user.PasswordHash, pwInput);
         }
     }
 }
