@@ -16,14 +16,10 @@ class Home extends Component {
         this.setState({ newsList: news });
     };
 
-    showLoginModalHandler = () => {
-        this.setState({ showLoginModal: !this.state.showLoginModal });
-    };
-
     render() {
         return (
             <div className={classes.Home}>
-                <Modal show={this.context.stateInHome} />
+                <Modal show={this.context.stateShowModal} />
                 <Search newsHandler={this.setNewsList} />
                 {this.state.newsList ? (
                     <Feed newsList={this.state.newsList} />

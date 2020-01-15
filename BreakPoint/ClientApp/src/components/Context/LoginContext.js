@@ -1,22 +1,22 @@
 import React, { useState } from "react";
 
 const loginContext = React.createContext({
-    stateInHome: "",
-    changeStateInHome: () => {}
+    stateShowModal: "",
+    changeStateShowModal: () => {}
 });
 
 export const AppWrapper = props => {
-    let [stateInHome, setStateInHome] = useState(false);
+    let [stateShowModal, setStateShowModal] = useState(false);
 
-    let changeStateInHome = () => {
-        setStateInHome(true);
+    let changeStateShowModal = () => {
+        setStateShowModal(true);
     };
 
     return (
         <loginContext.Provider
             value={{
-                stateInHome,
-                changeStateInHome
+                stateShowModal,
+                changeStateShowModal
             }}
         >
             {props.children}
