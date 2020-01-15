@@ -27,8 +27,8 @@ namespace BreakPoint.Controllers
             _config = config;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> login()
+       // [HttpPost]
+        /*public async Task<IActionResult> login()
         {
             Dictionary<string, string> requestBody;
             using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
@@ -71,6 +71,7 @@ namespace BreakPoint.Controllers
             {
                 return BadRequest();
             }
-        }
+        }*/
+
     }
 }

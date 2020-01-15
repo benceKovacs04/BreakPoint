@@ -5,6 +5,7 @@ using BreakPoint.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,6 +42,11 @@ namespace BreakPoint
             
             services.AddDbContext<BreakPointContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
+
+            services.AddIdentity<User, IdentityRole>(options => options.Password.RequireNonAlphanumeric = false)
+                .AddEntityFrameworkStores<BreakPointContext>()
+                .AddDefaultTokenProviders();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +72,8 @@ namespace BreakPoint
             app.UseRouting();
 
             app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

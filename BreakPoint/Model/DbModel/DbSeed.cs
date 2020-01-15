@@ -1,85 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 namespace BreakPoint.Model.DbModel
 {
     public class DbSeed
     {
-        private BreakPointContext _context;
+        private IServiceProvider _serviceProvider;
 
-        public DbSeed(BreakPointContext context)
+        public DbSeed(IServiceProvider serviceProvider)
         {
-            _context = context;
+            _serviceProvider = serviceProvider;
         }
 
-        public void Initialise()
+        public async void Initialise()
         {
-            var users = new User[]
+            var context = _serviceProvider.GetRequiredService<BreakPointContext>();
+            var userManager = _serviceProvider.GetRequiredService<UserManager<User>>();
+          
+            User user = new User()
             {
-                new User
-                {
-                    UserName = "TestUser1",
-                    Email = "testemail@gmail.com",
-                    Password = "hashedPassword1",
-                    RegistrationDate = new DateTime(2020, 1, 1),
-                   // Friends = new List<User>(),
-                    Posts = new List<Post>()
-                },
-                new User
-                {
-                    UserName = "TestUser2",
-                    Email = "testemail2@gmail.com",
-                    Password = "hashedPassword2",
-                    RegistrationDate = new DateTime(2020, 1, 2),
-                  //  Friends = new List<User>(),
-                    Posts = new List<Post>()
-                },
-                new User
-                {
-                    UserName = "TestUser3",
-                    Email = "testemail3@gmail.com",
-                    Password = "hashedPassword3",
-                    RegistrationDate = new DateTime(2020, 1, 3),
-                   // Friends = new List<User>(),
-                    Posts = new List<Post>()
-                }
+                Email = "testmail@gmail.com",
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = "TestUser2"
             };
-
-            var posts = new Post[]
-            {
-                new Post
-                {
-                    Content = "text content",
-                    CreationTime = new DateTime(2020, 1, 1),
-                    UserID = 1,
-                    User = users[0]
-                },
-
-                new Post
-                {
-                    Content = "text content2",
-                    CreationTime = new DateTime(2020, 1, 2),
-                    UserID = 1,
-                    User = users[0]
-                },
-            };
-
-            users[0].Posts.Add(posts[0]);
-            users[0].Posts.Add(posts[1]);
-
-            foreach (var user in users)
-            {
-                _context.Users.Add(user);
-            }
-            _context.SaveChanges();
-
-            foreach (var post in posts)
-            {
-                _context.Posts.Add(post);
-            }
-            _context.SaveChanges();
+             var x = await userManager.CreateAsync(user, "Testtestetasdasdf");
+            var s = 4;
+            
         }
 
     };
