@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Aux from "../../hoc/Auixiliary";
 import Axios from "axios";
+import LoginContext from "../Context/LoginContext";
 
 export default function Login() {
+    let { changeStateLoggedIn } = useContext(LoginContext);
+
     const [UserName, setUserName] = useState(null);
     const [Password, setPassword] = useState(null);
 
@@ -10,9 +13,11 @@ export default function Login() {
         Axios.post("https://localhost:5001/api/login", {
             username: UserName,
             password: Password
-        }).then(response =>
-            localStorage.setItem("token", response.data["token"])
-        );
+        })
+            .then(response =>
+                localStorage.setItem("token", response.data["token"])
+            )
+            .then(changeStateLoggedIn);
     };
 
     return (
