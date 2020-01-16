@@ -5,24 +5,35 @@ import loginContext from "../../Context/LoginContext";
 import { Link } from "react-router-dom";
 
 export default function NavigationItems() {
-    let { stateShowModal, changeStateShowModal } = useContext(loginContext);
+    let {
+        stateShowModal,
+        changeStateShowModal,
+        stateLoggedIn,
+        changeStateLoggedIn
+    } = useContext(loginContext);
+
+    let logOut = () => {
+        changeStateLoggedIn();
+        localStorage.removeItem("token");
+    };
+
+    let loggedOut = (
+        <NavigationItem click={changeStateShowModal}>Log In</NavigationItem>
+    );
+    let loggedIn = <NavigationItem click={logOut}>Log Out</NavigationItem>;
 
     return (
         <ul className={classes.NavigationItems}>
             {stateShowModal}
-            <NavigationItem click={changeStateShowModal}>Log In</NavigationItem>
-            <Link to={{ pathname: "/register" }} style={kabbe}>Register</Link>
+            {stateLoggedIn ? loggedIn : loggedOut}
+            <Link to={{ pathname: "/register" }} style={registerStyle}>Register</Link>
 
         </ul>
     );
 }
 
-const ehh = () => {
-    // return <Link></Link>
-}
-
-const kabbe = {
-    textDecoration: 'none',
-    color: 'white',
-    marginLeft: "30px",
+const registerStyle = {
+    color: "white",
+    textDecoration: "none",
+    marginLeft: "20px"
 }

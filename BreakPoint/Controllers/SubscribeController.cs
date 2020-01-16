@@ -1,6 +1,7 @@
 ﻿using BreakPoint.Interfaces;
 using BreakPoint.Model;
 using BreakPoint.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -24,6 +25,7 @@ namespace BreakPoint.Controllers
             _apiService = apiService;
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<List<News>> SubscribeRSS()
         {
