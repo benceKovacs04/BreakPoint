@@ -10,7 +10,9 @@ export default function Login() {
         Axios.post("https://localhost:5001/api/login", {
             username: UserName,
             password: Password
-        }).then(response => console.log(response));
+        }).then(response =>
+            localStorage.setItem("token", response.data["token"])
+        );
     };
 
     return (

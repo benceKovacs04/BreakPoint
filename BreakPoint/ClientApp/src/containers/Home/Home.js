@@ -8,6 +8,10 @@ class Home extends Component {
         newsList: null
     };
 
+    setNewsList = news => {
+        this.setState({ newsList: news });
+    };
+
     render() {
         return (
             <div className={classes.Home}>

@@ -5,7 +5,8 @@ export const Search = props => {
     const [userInput, setUserInput] = useState(null);
 
     const fetchData = () => {
-        axios.post("https://localhost:5001/subscribe", {userInput})
+        axios
+            .post("https://localhost:5001/subscribe", { userInput })
             .then(response => props.newsHandler(response.data));
     };
 
