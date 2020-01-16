@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import classes from "./NavigationItems.module.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
 import loginContext from "../../Context/LoginContext";
+import { Link } from "react-router-dom";
 
 export default function NavigationItems() {
     let {
@@ -25,7 +26,14 @@ export default function NavigationItems() {
         <ul className={classes.NavigationItems}>
             {stateShowModal}
             {stateLoggedIn ? loggedIn : loggedOut}
-            <NavigationItem>Register</NavigationItem>
+            <Link to={{ pathname: "/register" }} style={registerStyle}>Register</Link>
+
         </ul>
     );
+}
+
+const registerStyle = {
+    color: "white",
+    textDecoration: "none",
+    marginLeft: "20px"
 }

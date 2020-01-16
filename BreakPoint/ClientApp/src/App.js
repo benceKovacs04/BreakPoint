@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router";
+import { Route, BrowserRouter as Router } from "react-router-dom";
 import { Layout } from "./components/Layout/Layout";
 import Home from "./containers/Home/Home";
 import loginContext, { AppWrapper } from "./components/Context/LoginContext";
@@ -11,12 +11,14 @@ export default class App extends Component {
 
     render() {
         return (
-            <AppWrapper>
-                <Layout>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/register" component={RegistrationForm} />
-                </Layout>
-            </AppWrapper>
+            <Router>
+                <AppWrapper>
+                    <Layout>
+                        <Route exact path="/" component={Home} />
+                        <Route path='/register' component={RegistrationForm} />
+                    </Layout>
+                </AppWrapper>
+            </Router>
         );
     }
 }
