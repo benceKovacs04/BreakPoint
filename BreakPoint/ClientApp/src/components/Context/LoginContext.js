@@ -9,7 +9,7 @@ export const AppWrapper = props => {
     let [stateShowModal, setStateShowModal] = useState(false);
 
     let changeStateShowModal = () => {
-        setStateShowModal(true);
+        setStateShowModal(!stateShowModal);
     };
 
     return (

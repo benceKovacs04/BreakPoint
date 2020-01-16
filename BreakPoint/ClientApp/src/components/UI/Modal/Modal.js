@@ -5,12 +5,10 @@ import Backdrop from "../Backdrop/Backdrop";
 import loginContext from "../../Context/LoginContext";
 
 export default function Modal(props) {
-    let { stateShowModal } = useContext(loginContext);
-
+    let { stateShowModal, changeStateShowModal } = useContext(loginContext);
     return (
         <Aux>
-            {stateShowModal}
-            <Backdrop show={props.show} clicked={props.modalClosed} />
+            <Backdrop show={stateShowModal} click={changeStateShowModal} />
             <div
                 className={classes.Modal}
                 style={{
