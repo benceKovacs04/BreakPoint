@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 
 export const Search = props => {
@@ -6,7 +6,7 @@ export const Search = props => {
 
     const fetchData = () => {
         axios.post("https://localhost:5001/subscribe", {userInput})
-            .then(response => props.newsHandler(response.data));
+            .then(response => props.newsHandler(response.data))
     };
 
     return (
@@ -22,4 +22,4 @@ export const Search = props => {
             />
         </Fragment>
     );
-};
+}

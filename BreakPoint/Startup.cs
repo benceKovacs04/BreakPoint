@@ -26,9 +26,8 @@ namespace BreakPoint
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-
             services.AddScoped<IApiService<RSS>, ApiService>();
+            services.AddSingleton<IHasherService, HasherService>();
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -40,7 +39,12 @@ namespace BreakPoint
             services.AddDbContext<BreakPointContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                    {
+                        options.User.RequireUniqueEmail = true;
+                        options.Password.RequiredLength = 8;
+                    }
+                )
                 .AddEntityFrameworkStores<BreakPointContext>()
                 .AddDefaultTokenProviders();
 
@@ -70,7 +74,8 @@ namespace BreakPoint
 
             app.UseRouting();
 
-            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true).AllowAnyMethod().AllowAnyHeader().AllowCredentials());
+            app.UseCors(options => options.SetIsOriginAllowed(x => _ = true)
+                .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
 
             app.UseAuthorization();
 
