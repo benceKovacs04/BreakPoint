@@ -23,7 +23,7 @@ namespace BreakPoint.Controllers
         }
 
         [HttpPost]
-        public async Task<IdentityResult> RegisterUser()
+        public async Task<IEnumerable<IdentityError>> RegisterUser()
         {
             Dictionary<string, string> requestBody;
             using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
@@ -39,8 +39,9 @@ namespace BreakPoint.Controllers
             };
 
             var result = await _userManager.CreateAsync(newUser, requestBody["password"]);
+            var pwErrors = result.Errors;
 
-            return result;
+            return pwErrors;
         }
     }
 }

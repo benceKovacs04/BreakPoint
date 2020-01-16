@@ -39,7 +39,12 @@ namespace BreakPoint
             services.AddDbContext<BreakPointContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("BreakPointContext")));
 
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(options =>
+                    {
+                        options.User.RequireUniqueEmail = true;
+                        options.Password.RequiredLength = 8;
+                    }
+                )
                 .AddEntityFrameworkStores<BreakPointContext>()
                 .AddDefaultTokenProviders();
 

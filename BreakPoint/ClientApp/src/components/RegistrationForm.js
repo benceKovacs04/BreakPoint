@@ -41,35 +41,78 @@ export class RegistrationForm extends Component {
         }
 
         axios.post("https://localhost:5001/register", user)
-        .then(resp => this.handleResponse(resp))
+            .then(resp => this.handleResponse(resp.data))
     }
 
-    handleResponse = (resp) => {
+    handleResponse = (errors) => {
         this.setState({
-            feedback: resp.data.errors
+            feedback: errors
         })
     }
 
+
     render() {
+        const regFormStyle = {
+            marginTop: 100,
+            display: "inline-block",
+        }
+        // const reqsStyle = {
+        //     backgroundColor : "lightblue",
+        //     borderRadius: "10px",
+        //     padding: "10px"
+        // }
+        // const pwFeedbackStyle = {
+        //     backgroundColor: "tomato",
+        //     borderRadius: "10px",
+        //     padding: "10px",
+        // }
+        const pwReqs =
+            <div
+                // style={reqsStyle}
+            >
+                <p>Your password should:</p>
+                <p>- be at least 8 characters long</p>
+                <p>- contain both lower case and upper case characters</p>
+                <p>- contain a digit</p>
+                <p>- contain a non-alphanumeric character</p>
+            </div>
         return (
-            <div>
-                <form>
-                    <label>Username</label>
-                    <input type='text' value={this.state.username} onChange={this.handleUsernameChange}></input>
+            <div style={regFormStyle}>
+                <form onSubmit={this.handleSubmit}>
+                    <label>Username:</label>
+                    <br></br>
+                    <input type='text' value={this.state.username} onChange={this.handleUsernameChange}
+                        required={true}
+                        minLength={6}
+                    />
+                    <br></br>
 
                     <label>Email address:</label>
-                    <input type='text' value={this.state.email} onChange={this.handleEmailChange}></input>
+                    <br></br>
+                    <input type='text' value={this.state.email} onChange={this.handleEmailChange}
+                        required={true}
+                    />
+                    <br></br>
 
                     <label>Password</label>
-                    <input type='text' value={this.state.password} onChange={this.handlePwChange}></input>
+                    <br></br>
+                    <input type='text' value={this.state.password} onChange={this.handlePwChange}
+                        required={true}
+                        minLength={8}
+                    />
+                    <br></br>
 
-                    <button onClick={this.handleSubmit}>Register</button>
+                    <br></br>
+                    <button type="submit">Register</button>
 
                 </form>
-                <div>{
-                    this.state.feedback === '' ? 'Password should be whatever':
+                <br></br>
+                <div
+                    // style={pwFeedbackStyle}
+                >{
+                    this.state.feedback === '' ? pwReqs:
                     this.state.feedback.map(
-                            (value) => <p>{value.description}</p>
+                            (error) => <p>{error.description}</p>
                         )
                     }
                 </div>
