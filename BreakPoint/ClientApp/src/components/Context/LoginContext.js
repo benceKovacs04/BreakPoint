@@ -9,7 +9,9 @@ const loginContext = React.createContext({
 
 export const AppWrapper = props => {
     let [stateShowModal, setStateShowModal] = useState(false);
-    let [stateLoggedIn, setStateLoggedIn] = useState(false);
+    let [stateLoggedIn, setStateLoggedIn] = useState(
+        localStorage.getItem("token")
+    );
 
     let changeStateShowModal = () => {
         setStateShowModal(!stateShowModal);

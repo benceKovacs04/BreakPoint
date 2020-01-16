@@ -6,7 +6,15 @@ export const Search = props => {
 
     const fetchData = () => {
         axios
-            .post("https://localhost:5001/subscribe", { userInput })
+            .post(
+                "https://localhost:5001/subscribe",
+                { userInput },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+            )
             .then(response => props.newsHandler(response.data));
     };
 

@@ -4,12 +4,27 @@ import NavigationItem from "./NavigationItem/NavigationItem";
 import loginContext from "../../Context/LoginContext";
 
 export default function NavigationItems() {
-    let { stateShowModal, changeStateShowModal } = useContext(loginContext);
+    let {
+        stateShowModal,
+        changeStateShowModal,
+        stateLoggedIn,
+        changeStateLoggedIn
+    } = useContext(loginContext);
+
+    let logOut = () => {
+        changeStateLoggedIn();
+        localStorage.removeItem("token");
+    };
+
+    let loggedOut = (
+        <NavigationItem click={changeStateShowModal}>Log In</NavigationItem>
+    );
+    let loggedIn = <NavigationItem click={logOut}>Log Out</NavigationItem>;
 
     return (
         <ul className={classes.NavigationItems}>
             {stateShowModal}
-            <NavigationItem click={changeStateShowModal}>Log In</NavigationItem>
+            {stateLoggedIn ? loggedIn : loggedOut}
             <NavigationItem>Register</NavigationItem>
         </ul>
     );
