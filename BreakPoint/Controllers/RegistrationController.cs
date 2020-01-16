@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace BreakPoint.Controllers
             };
 
             var result = await _userManager.CreateAsync(newUser, requestBody["password"]);
+            Console.WriteLine(result);
             var pwErrors = result.Errors;
 
             return pwErrors;

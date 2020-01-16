@@ -43,12 +43,9 @@ namespace BreakPoint.Model.DbModel
 
             foreach (var user in testUsers)
             {
-                var result = await userManager.CreateAsync(user, "asD12_");
-            
-                if (!result.Succeeded)
-                {
-                    Console.WriteLine(result);
-                }
+                var result = await userManager.CreateAsync(user, "asD12_34");
+
+                Console.WriteLine(result);
             }
             
         }
