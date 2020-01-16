@@ -25,12 +25,21 @@ class Home extends Component {
                 <div>No news in your feed</div>
             )}
         </Aux>
-    );
+    ); /* MEGKÉRDEZNI EZ MIÉRT NEM RENDERELI ÚJRA */
 
     render() {
         return (
             <div className={classes.Home}>
-                {this.context.stateLoggedIn ? this.loggedIn : null}
+                {this.context.stateLoggedIn ? (
+                    <Aux>
+                        <Search newsHandler={this.setNewsList} />
+                        {this.state.newsList ? (
+                            <Feed newsList={this.state.newsList} />
+                        ) : (
+                            <div>No news in your feed</div>
+                        )}
+                    </Aux>
+                ) : null}
             </div>
         );
     }
