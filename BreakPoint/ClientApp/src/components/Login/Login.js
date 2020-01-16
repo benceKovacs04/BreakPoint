@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import Aux from "../../hoc/Auixiliary";
+import classes from "./Login.module.css";
 import Axios from "axios";
 import LoginContext from "../Context/LoginContext";
 
@@ -21,12 +21,13 @@ export default function Login() {
     };
 
     return (
-        <Aux>
-            <p>USername</p>
+        <div className={classes.Login}>
+            <p>Username</p>
             <input onChange={event => setUserName(event.target.value)}></input>
             <p>Password</p>
             <input onChange={event => setPassword(event.target.value)}></input>
+            <br></br>
             <button onClick={logIn}>Log me in</button>
-        </Aux>
+        </div>
     );
 }
